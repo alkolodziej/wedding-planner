@@ -12,16 +12,16 @@ export type Guest = {
 }
 
 export const initialGuests: Guest[] = [
-  { id: 'jan', name: 'Jan Nowak', email: 'jan.nowak@gmail.com', status: 'Potwierdzony', table: '1', allergy: 'Brak' },
-  { id: 'maria', name: 'Maria Kowalska', email: 'maria.kowalska@yahoo.com', status: 'Potwierdzony', table: '1', allergy: 'Orzechy' },
-  { id: 'piotr', name: 'Piotr Wisniewski', email: 'p.wisniewski@outlook.com', status: 'Oczekuje', table: '2', allergy: 'Brak' },
-  { id: 'anna', name: 'Anna Wojcik', email: 'anna.wojcik@gmail.com', status: 'Potwierdzony', table: '2', allergy: 'Laktoza' },
-  { id: 'tomasz', name: 'Tomasz Kaminski', email: 't.kaminski@interia.pl', status: 'Odrzucony', table: '-', allergy: 'Brak' },
-  { id: 'katarzyna', name: 'Katarzyna Lewandowska', email: 'k.lewandowska@gmail.com', status: 'Potwierdzony', table: '3', allergy: 'Gluten' },
-  { id: 'marek', name: 'Marek Zielinski', email: 'm.zielinski@wp.pl', status: 'Oczekuje', table: '3', allergy: 'Brak' },
-  { id: 'ewa', name: 'Ewa Szymanska', email: 'ewa.szymanska@gmail.com', status: 'Potwierdzony', table: '4', allergy: 'Owoce morza' },
-  { id: 'michal', name: 'Michal Wozniak', email: 'm.wozniak@gmail.com', status: 'Potwierdzony', table: '4', allergy: 'Brak' },
-  { id: 'joanna', name: 'Joanna Dabrowska', email: 'j.dabrowska@yahoo.com', status: 'Oczekuje', table: '5', allergy: 'Brak' },
-  { id: 'krzysztof', name: 'Krzysztof Kozlowski', email: 'k.kozlowski@outlook.com', status: 'Potwierdzony', table: '5', allergy: 'Soja' },
-  { id: 'magdalena', name: 'Magdalena Jankowska', email: 'm.jankowska@gmail.com', status: 'Potwierdzony', table: '6', allergy: 'Brak' },
+  { id: 'jan', name: 'Gość demo 1', email: 'guest-1@example.com', status: 'Potwierdzony', table: '1', allergy: 'Brak' },
+  { id: 'maria', name: 'Gość demo 2', email: 'guest-2@example.com', status: 'Potwierdzony', table: '1', allergy: 'Orzechy' },
+  { id: 'piotr', name: 'Gość demo 3', email: 'guest-3@example.com', status: 'Oczekuje', table: '2', allergy: 'Brak' },
+  { id: 'anna', name: 'Gość demo 4', email: 'guest-4@example.com', status: 'Potwierdzony', table: '2', allergy: 'Laktoza' },
+  { id: 'tomasz', name: 'Gość demo 5', email: 'guest-5@example.com', status: 'Odrzucony', table: '-', allergy: 'Brak' },
+  { id: 'katarzyna', name: 'Gość demo 6', email: 'guest-6@example.com', status: 'Potwierdzony', table: '3', allergy: 'Gluten' },
+  { id: 'marek', name: 'Gość demo 7', email: 'guest-7@example.com', status: 'Oczekuje', table: '3', allergy: 'Brak' },
+  { id: 'ewa', name: 'Gość demo 8', email: 'guest-8@example.com', status: 'Potwierdzony', table: '4', allergy: 'Owoce morza' },
+  { id: 'michal', name: 'Gość demo 9', email: 'guest-9@example.com', status: 'Potwierdzony', table: '4', allergy: 'Brak' },
+  { id: 'joanna', name: 'Gość demo 10', email: 'guest-10@example.com', status: 'Oczekuje', table: '5', allergy: 'Brak' },
+  { id: 'krzysztof', name: 'Gość demo 11', email: 'guest-11@example.com', status: 'Potwierdzony', table: '5', allergy: 'Soja' },
+  { id: 'magdalena', name: 'Gość demo 12', email: 'guest-12@example.com', status: 'Potwierdzony', table: '6', allergy: 'Brak' },
 ]

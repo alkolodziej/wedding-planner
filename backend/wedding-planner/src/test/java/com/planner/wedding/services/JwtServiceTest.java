@@ -2,8 +2,11 @@ package com.planner.wedding.services;
 
 import com.planner.wedding.entities.User;
 import com.planner.wedding.entities.UserRole;
+import io.jsonwebtoken.Jwts;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +17,7 @@ class JwtServiceTest {
 
     @BeforeEach
     void setUp() {
-        jwtService = new JwtService();
+        jwtService = new JwtService(generateTestKey());
         testUser = User.builder()
                 .email("test@example.com")
                 .role(UserRole.PLANNER)
@@ -46,5 +49,24 @@ class JwtServiceTest {
         assertFalse(jwtService.isTokenValid("malformed.token.string"));
         assertFalse(jwtService.isTokenValid(""));
         assertFalse(jwtService.isTokenValid(null));
+    }
+
+    @Test
+    void isTokenValidReturnsFalseAfterSigningKeyRotation() {
+        String token = jwtService.generateToken(testUser);
+        JwtService rotatedService = new JwtService(generateTestKey());
+
+        assertFalse(rotatedService.isTokenValid(token));
+    }
+
+    @Test
+    void constructorRejectsMissingOrInvalidSigningKey() {
+        assertThrows(IllegalArgumentException.class, () -> new JwtService(""));
+        assertThrows(IllegalArgumentException.class, () -> new JwtService("not base64"));
+        assertThrows(IllegalArgumentException.class, () -> new JwtService("YQ=="));
+    }
+
+    private static String generateTestKey() {
+        return Base64.getEncoder().encodeToString(Jwts.SIG.HS256.key().build().getEncoded());
     }
 }

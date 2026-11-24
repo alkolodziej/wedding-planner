@@ -19,8 +19,8 @@ export interface VendorCategory {
 export const vendors: Vendor[] = [
   {
     id: 'v1',
-    name: 'Delicious Catering',
-    email: 'delicious@catering.pl',
+    name: 'Usługodawca demo 1',
+    email: 'vendor-1@example.com',
     category: 'Catering',
     rating: 4.9,
     reviewsCount: 156,
@@ -30,8 +30,8 @@ export const vendors: Vendor[] = [
   },
   {
     id: 'v2',
-    name: 'Flowers & More',
-    email: 'kontakt@flowersmore.pl',
+    name: 'Usługodawca demo 2',
+    email: 'vendor-2@example.com',
     category: 'Florystyka',
     rating: 4.8,
     reviewsCount: 98,
@@ -41,8 +41,8 @@ export const vendors: Vendor[] = [
   },
   {
     id: 'v3',
-    name: 'Foto Studio Pro',
-    email: 'biuro@fotostudio.pl',
+    name: 'Usługodawca demo 3',
+    email: 'vendor-3@example.com',
     category: 'Fotografia',
     rating: 4.7,
     reviewsCount: 73,
@@ -52,8 +52,8 @@ export const vendors: Vendor[] = [
   },
   {
     id: 'v4',
-    name: 'Dream Venue',
-    email: 'eventy@dreamvenue.pl',
+    name: 'Usługodawca demo 4',
+    email: 'vendor-4@example.com',
     category: 'Sala weselna',
     rating: 4.9,
     reviewsCount: 210,
@@ -63,8 +63,8 @@ export const vendors: Vendor[] = [
   },
   {
     id: 'v5',
-    name: 'Muzyka na Żywo',
-    email: 'kontakt@muzyka.pl',
+    name: 'Usługodawca demo 5',
+    email: 'vendor-5@example.com',
     category: 'Muzyka',
     rating: 4.6,
     reviewsCount: 45,

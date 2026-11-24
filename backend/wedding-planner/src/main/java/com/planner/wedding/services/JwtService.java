@@ -4,19 +4,30 @@ import com.planner.wedding.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.util.Base64;
 import java.util.Date;
 
 @Service
 public class JwtService {
 
-    private static final String SECRET =
-            "very-secret-key-very-secret-key-123456";
+    private final SecretKey key;
 
-    private final SecretKey key =
-            Keys.hmacShaKeyFor(SECRET.getBytes());
+    public JwtService(@Value("${app.jwt.secret}") String secret) {
+        byte[] decoded;
+        try {
+            decoded = Base64.getDecoder().decode(secret);
+        } catch (IllegalArgumentException ignored) {
+            throw new IllegalArgumentException("JWT_SECRET must be a Base64-encoded key");
+        }
+        if (decoded.length < 32) {
+            throw new IllegalArgumentException("JWT_SECRET must contain at least 32 bytes before Base64 encoding");
+        }
+        this.key = Keys.hmacShaKeyFor(decoded);
+    }
 
     public String generateToken(User user) {
 

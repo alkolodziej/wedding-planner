@@ -1,44 +1,37 @@
 # Wedding Planner
 
-A client-server wedding planning application built with Spring Boot (backend) and React (frontend).
+Team project by Alan Kołodziej, Błażej Knap, Dominik Gos and Martyna Klimczak.
 
-## Tech Stack
+A wedding planning application for events, guests and RSVPs, tasks, vendors and expenses. The backend uses Spring Boot and Oracle. The frontend uses React and TypeScript.
 
-- **Backend**: Java 17, Spring Boot 4.0.3, Spring Security + OAuth2 (Google), JPA/Hibernate, Oracle Database
-- **Frontend**: React 19, TypeScript, Vite, Redux Toolkit, React Router
-- **Testing**: JUnit 5, Mockito, WebTestClient, H2 (test DB), JaCoCo
+## Run locally
 
-## Design Patterns
+Use Java 17 or later, Docker Compose and Node.js 24. From the repository root, prepare the backend environment.
 
-| Pattern | Implementation |
-|---|---|
-| Singleton | `ScheduleGenerator` – double-checked locking |
-| Factory | `TaskFactory` – abstract factory with type-specific concrete factories |
-| Strategy | `TaskCostStrategy` – injected via Spring `Map<String, TaskCostStrategy>` |
-| Observer | Spring `@EventListener` / `ApplicationEventPublisher` |
-
-## Project Structure
-
-```
-backend/wedding-planner/   Spring Boot REST API (port 8080)
-  ├── src/main/java/       controllers, services, entities, repositories, factory, events
-  └── src/test/java/       unit tests, integration tests (WebTestClient), pattern tests
-frontend/                  React SPA (port 5173, proxied to backend)
-  ├── src/api/             HTTP client + API modules
-  ├── src/features/        page components (Events, Tasks, Guests, Vendors, etc.)
-  └── src/store/           Redux slices
-```
-
-## Quick Start
-
-1. Configure Oracle connection in `application.properties` (or use `application-test.properties` with H2).
-2. Start backend: `./mvnw spring-boot:run` from `backend/wedding-planner/`.
-3. Start frontend: `npm run dev` from `frontend/`.
-4. Open `http://localhost:5173`.
-
-## Testing
-
-```bash
+```sh
 cd backend/wedding-planner
-./mvnw test
+cp -n .env.example .env
 ```
+
+Fill in `ORACLE_PASSWORD` and `APP_USER_PASSWORD` for a new local Oracle database. Generate a signing key with `openssl rand -base64 32` and set it as `JWT_SECRET`. Fill in `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` for a development OAuth client with the callback `http://localhost:8080/login/oauth2/code/google`. Leave the Stripe variables empty to use the mock payment gateway.
+
+```sh
+docker compose up -d
+set -a
+. ./.env
+set +a
+# Wait for Oracle to report that it is ready.
+./mvnw spring-boot:run
+```
+
+In a separate terminal, run the frontend from the repository root.
+
+```sh
+cd frontend
+npm ci
+npm run dev
+```
+
+Open `http://localhost:5173`. Vite proxies `/api` to port 8080. The local profile seeds demo data. Payments can use Stripe test keys in sandbox mode. Some API routes allow unauthenticated access, so use this setup only for local demonstrations.
+
+Run `./mvnw test` from the backend directory for the test suite, which uses H2 for integration tests. Run `npm test` from `frontend/` for the frontend suite.
